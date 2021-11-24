@@ -1,6 +1,16 @@
-Game.prototype.createPlayer = function(opts) {
+Game.prototype.createPlayer = function(x, y, network) {
 
     const game = this
+
+    // If positions aren't provided
+
+    if (!x && !y) {
+
+        // Create them
+
+        x = Math.random() * map.el.width
+        y = Math.random() * map.el.height
+    }
 
     // opts for player
 
@@ -11,15 +21,13 @@ Game.prototype.createPlayer = function(opts) {
 
     const player = new Player({
         type: "player",
-        left: map.el.width * 0.5 - width * 0.5,
-        top: map.el.height - 55,
+        left: x - width * 0.5,
+        top: y - height * 0.5,
         width: width,
         height: height,
         imageID: 'player',
         score: 0,
-        shootDelay: 200,
-        lastShot: 100,
-        network: opts.network || undefined,
+        network: network || undefined,
         alive: true,
         gameID: game.id,
     })
@@ -30,100 +38,29 @@ Game.prototype.createPlayer = function(opts) {
     game.objects.player[player.id] = player
 }
 
-Game.prototype.createLaser = function(player) {
+Game.prototype.createFood = function(x, y) {
 
     const game = this
 
-    // opts for laser
+    // opts for food
 
-    const width = 6
-    const height = 30
+    const width = 45
+    const height = 50
 
-    // Create laser
+    // Create food
 
-    const laser = new Laser({
-        type: 'laser',
-        left: player.left + player.width * 0.5 - width / 2,
-        top: player.top - height + 15,
+    const food = new Food({
+        type: "food",
+        left: x - width * 0.5,
+        top: y - height * 0.5,
         width: width,
         height: height,
-        imageID: 'laser',
-        playerID: player.id,
-        speed: 6,
+        imageID: 'food',
         gameID: game.id,
     })
-    laser.draw()
+    food.draw()
 
-    // Assign laser to game
-
-    game.objects.laser[laser.id] = laser
-}
-
-Game.prototype.createEnemy = function() {
-
-    const game = this
-
-    // opts for enemy
-
-    const width = 36
-    const height = 27
-
-    const min = width * 4
-    const max = map.el.width - width * 2
-
-    let left = 0
-
-    while (left < min || left > max) {
-
-        left = Math.random() * map.el.width
-    }
-
-    // Create enemy
-
-    const enemy = new Enemy({
-        type: "enemy",
-        left: left,
-        top: 0,
-        width: width,
-        height: height,
-        imageID: 'enemy',
-        speed: Math.max(Math.random(), 0.06) * 0.15,
-        shootDelay: Math.max(2000, Math.random() * 6000),
-        lastShot: 2000,
-        moveType: 'left',
-        gameID: game.id,
-    })
-    enemy.draw()
-
-    // Assign enemy to game
-
-    game.objects.enemy[enemy.id] = enemy
-}
-
-Game.prototype.createFireball = function(enemy) {
-
-    const game = this
-
-    // opts for fireball
-
-    const width = 15
-    const height = 19
-
-    // Create fireball
-
-    const fireball = new Fireball({
-        type: 'fireball',
-        left: enemy.left + enemy.width * 0.5 - width / 2,
-        top: enemy.top - height + 15,
-        width: width,
-        height: height,
-        imageID: 'fireball',
-        speed: 1,
-        gameID: game.id,
-    })
-    fireball.draw()
-
-    // Assign fireball to game
-
-    game.objects.fireball[fireball.id] = fireball
+    // Assign food to game
+    
+    game.objects.food[food.id] = food
 }

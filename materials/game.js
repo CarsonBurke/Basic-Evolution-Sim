@@ -12,9 +12,7 @@ class Game {
         this.spawning = true
         this.objects = {
             player: {},
-            laser: {},
-            enemy: {},
-            fireball: {},
+            food: {},
         }
 
         //
