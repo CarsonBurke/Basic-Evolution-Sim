@@ -4,19 +4,21 @@ function runTick() {
 
     tick += 1
 
-    runBatch()
-
-    display()
-
-    animate()
-}
-
-function runBatch() {
-
     const game = games[Object.keys(games)[0]]
 
     const players = Object.values(game.objects.player)
     const food = Object.values(game.objects.food)
+
+    runBatch(players, food)
+    foodManager(food)
+
+    display()
+    animate()
+}
+
+function runBatch(players, food) {
+
+    const game = games[Object.keys(games)[0]]
 
     for (const player of players) {
 
@@ -74,6 +76,19 @@ function runBatch() {
         let top = player.top - 10 * Math.sin(player.angle)
         
         player.move(left, top)
+    }
+}
+
+function foodManager(food) {
+
+    const game = games[Object.keys(games)[0]]
+
+    let i = food.length
+
+    while (i < 10) {
+
+        game.createFood()
+        i++
     }
 }
 

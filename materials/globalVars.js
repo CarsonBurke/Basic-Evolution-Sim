@@ -4,6 +4,7 @@ let properties = {
     mapWidth: 900,
     mapHeight: 700,
     startingPlayers: 100,
+    foodCount: 10,
     nextId: 0,
     gameSpeed: 1,
     animateTickSkip: 1,
