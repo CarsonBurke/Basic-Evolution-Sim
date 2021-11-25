@@ -84,7 +84,7 @@ function runBatch(players, food) {
 
         // If player is inside closestFood
         
-        if (closestFood && findDistance(player, closestFood) - closestFood.widthwwwwwwwwwwwww <= 0) {
+        if (closestFood && findDistance(player, closestFood) - closestFood.width * 1.5 <= 0) {
             
             // Delete food and add score the player
 
