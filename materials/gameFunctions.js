@@ -1,15 +1,15 @@
-Game.prototype.createPlayer = function(x, y, angle, network) {
+Game.prototype.createPlayer = function(left, top, angle, network) {
 
     const game = this
 
     // If positions aren't provided
 
-    if (!x && !y) {
+    if (!left && !top) {
 
         // Create them
 
-        x = Math.random() * map.el.width
-        y = Math.random() * map.el.height
+        left = Math.random() * map.el.width
+        top = Math.random() * map.el.height
     }
 
     // opts for player
@@ -21,8 +21,8 @@ Game.prototype.createPlayer = function(x, y, angle, network) {
 
     const player = new Player({
         type: "player",
-        left: x - width * 0.5,
-        top: y - height * 0.5,
+        left: left - width * 0.5,
+        top: top - height * 0.5,
         width: width,
         height: height,
         imageID: 'player',
@@ -40,21 +40,43 @@ Game.prototype.createPlayer = function(x, y, angle, network) {
     game.objects.player[player.id] = player
 }
 
-Game.prototype.createFood = function(x, y) {
+Game.prototype.createFood = function() {
 
     const game = this
 
     // opts for food
 
-    const width = 50
-    const height = 50
+    const width = 30
+    const height = 30
+
+    // Random spawn position
+
+    let min = width * 4
+    let max = map.el.width - width * 2
+
+    let left = 0
+
+    while (left < min || left > max) {
+
+        left = Math.random() * map.el.width
+    }
+
+    min = height * 4
+    max = map.el.height - height * 2
+
+    let top = 0
+
+    while (top < min || top > max) {
+
+        top = Math.random() * map.el.width
+    }
 
     // Create food
 
     const food = new Food({
         type: "food",
-        left: x - width * 0.5,
-        top: y - height * 0.5,
+        left: left - width * 0.5,
+        top: top - height * 0.5,
         width: width,
         height: height,
         imageID: 'food',

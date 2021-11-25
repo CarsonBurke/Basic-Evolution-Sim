@@ -34,6 +34,7 @@ function runBatch(players, food) {
         const inputs = [
             { name: 'Player x', value: player.left + player.width / 2 },
             { name: 'Player y', value: player.left + player.width / 2 },
+            { name: 'Player angle', value: player.angle },
             { name: 'Closest food x', value: closestFood ? closestFood.left + closestFood.width / 2 : 0 },
             { name: 'Closest food y', value: closestFood ? closestFood.left + closestFood.width / 2 : 0 },
         ]
@@ -81,7 +82,15 @@ function runBatch(players, food) {
 
         //
 
+        // If player is inside closestFood
+        
+        if (closestFood && findDistance(player, closestFood) - closestFood.width * 2 <= 0) {
+            
+            // Delete food and add score the player
 
+            player.score += 1
+            closestFood.delete()
+        }
     }
 }
 

@@ -32,8 +32,8 @@ GameObject.prototype.move = function(x, y) {
 GameObject.prototype.delete = function() {
 
     const gameObject = this
-
     
+    delete gameObject.findGame().objects[gameObject.type][gameObject.id]
 }
 
 GameObject.prototype.exists = function() {
@@ -48,4 +48,21 @@ GameObject.prototype.findGame = function() {
     const gameObject = this
 
     return games[gameObject.gameID]
+}
+
+GameObject.prototype.isInside = function(otherObj) {
+
+    const gameObject = this
+
+    // Check is gameObject is inside otherObj
+
+    if (gameObject.bottom >= otherObj.top &&
+        gameObject.top <= otherObj.bottom &&
+        gameObject.right >= otherObj.left &&
+        gameObject.left <= otherObj.right) {
+
+        // Inform true
+
+        return true
+    }
 }
