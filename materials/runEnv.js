@@ -55,31 +55,6 @@ function runBatch(players, food) {
 
         player.network.forwardPropagate(inputs)
 
-        // 
-
-        /* window.onkeydown = function(e) {
-
-            const key = e.key
-
-            if (key == 'w') {
-
-                let left = player.left - player.speed * Math.cos(player.angle)
-                let top = player.top - player.speed * Math.sin(player.angle)
-                
-                player.move(left, top)
-            }
-            if (key == 'd') {
-
-                player.rotateClockwise()
-                return
-            }
-            if (key == 'a') {
-
-                player.rotateCounterClockwise()
-                return
-            }
-        } */
-
         //
 
         // Find last layer
@@ -110,7 +85,7 @@ function runBatch(players, food) {
                     let top = player.top - player.speed * Math.sin(player.angle)
                     
                     player.move(left, top)
-                    continue
+                    break
                 }
                 if (i == 1) {
 
