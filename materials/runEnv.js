@@ -84,7 +84,7 @@ function runBatch(players, food) {
 
         // If player is inside closestFood
         
-        if (closestFood && findDistance(player, closestFood) - closestFood.width * 1.5 <= 0) {
+        if (closestFood && findDistance(player, closestFood) - closestFood.width * 2 <= 0) {
             
             // Delete food and add score the player
 
@@ -100,7 +100,7 @@ function foodManager(food) {
 
     let i = food.length
 
-    while (i < 10) {
+    while (i < minFood) {
 
         game.createFood()
         i++

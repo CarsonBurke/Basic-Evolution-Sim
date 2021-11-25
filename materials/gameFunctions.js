@@ -71,6 +71,16 @@ Game.prototype.createFood = function() {
         top = Math.random() * map.el.width
     }
 
+    for (const foodPart of Object.values(game.objects.food)) {
+
+        // If foodPart is positions this then stop
+
+        if (findDistance({ left: left, top: top, width: width, height: height }, foodPart) - foodPart.width * 2 <= 0) {
+
+            return
+        } 
+    }
+
     // Create food
 
     const food = new Food({
