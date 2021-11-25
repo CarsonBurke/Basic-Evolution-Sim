@@ -68,12 +68,12 @@ function runBatch(players, food) {
                 
                 player.move(left, top)
             }
-            if (key == 'a') {
+            if (key == 'd') {
 
                 player.rotateClockwise()
                 return
             }
-            if (key == 'd') {
+            if (key == 'a') {
 
                 player.rotateCounterClockwise()
                 return
@@ -84,7 +84,7 @@ function runBatch(players, food) {
 
         // If player is inside closestFood
         
-        if (closestFood && findDistance(player, closestFood) - closestFood.width * 2 <= 0) {
+        if (closestFood && findDistance(player, closestFood) - closestFood.widthwwwwwwwwwwwww <= 0) {
             
             // Delete food and add score the player
 
