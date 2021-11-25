@@ -50,12 +50,30 @@ function runBatch() {
 
         // 
 
-        window.onkeydown = function() {
+        window.onkeydown = function(e) {
 
-            player.rotateClockwise()
+            const key = e.key
+
+            if (key == 'a') {
+
+                player.rotateClockwise()
+                return
+            }
+            if (key == 'd') {
+
+                player.rotateCounterClockwise()
+                return
+            }
         }
 
-        player.move(player.x - 1, player.y)
+        if (tick % 10 == 0) console.log(player.angle)
+
+        //
+        
+        let left = player.left - 10 * Math.cos(player.angle)
+        let top = player.top - 10 * Math.sin(player.angle)
+        
+        player.move(left, top)
     }
 }
 
@@ -100,7 +118,7 @@ function animate() {
     map.cr.restore()
 
     const objects = game.objects
-
+    
     for (const type in objects) {
 
         for (const id in objects[type]) {

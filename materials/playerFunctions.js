@@ -2,14 +2,14 @@ Player.prototype.rotateClockwise = function() {
 
     const player = this
 
-    player.degree += 1
+    player.angle += 0.5
 }
 
 Player.prototype.rotateCounterClockwise = function() {
 
     const player = this
 
-    player.degree -= 1
+    player.angle -= 0.5
 }
 
 Player.prototype.kill = function() {
@@ -90,4 +90,13 @@ Player.prototype.createNetwork = function(inputs, outputs) {
     // Add network to player
 
     player.network = network
+}
+
+Player.prototype.rotate = function() {
+
+    const player = this
+    const game = player.findGame()
+
+    ctx.translate(player.left + player.width / 2, player.top + player.height / 2)
+    ctx.rotate(player.angle)
 }

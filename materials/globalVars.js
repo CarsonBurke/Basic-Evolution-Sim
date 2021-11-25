@@ -5,8 +5,8 @@ let properties = {
     mapHeight: 700,
     startingPlayers: 100,
     nextId: 0,
-    gameSpeed: 10,
-    animateTickSkip: 10,
+    gameSpeed: 1,
+    animateTickSkip: 1,
     games: {},
     map: {
         el: document.getElementById("map"),
