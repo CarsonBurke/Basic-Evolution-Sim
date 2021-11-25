@@ -1,4 +1,4 @@
-Game.prototype.createPlayer = function(x, y, network) {
+Game.prototype.createPlayer = function(x, y, degree, network) {
 
     const game = this
 
@@ -27,8 +27,8 @@ Game.prototype.createPlayer = function(x, y, network) {
         height: height,
         imageID: 'player',
         score: 0,
+        degree: degree,
         network: network || undefined,
-        alive: true,
         gameID: game.id,
     })
     player.draw()

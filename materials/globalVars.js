@@ -5,7 +5,7 @@ let properties = {
     mapHeight: 700,
     startingPlayers: 100,
     nextId: 0,
-    gameSpeed: 100000,
+    gameSpeed: 10,
     animateTickSkip: 10,
     games: {},
     map: {
