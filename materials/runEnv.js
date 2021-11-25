@@ -1,4 +1,5 @@
 let tick = 0
+let playerCount = 0
 
 function runTick() {
 
@@ -7,6 +8,8 @@ function runTick() {
     const game = games[Object.keys(games)[0]]
 
     const players = Object.values(game.objects.player)
+    playerCount = players.length
+
     const food = Object.values(game.objects.food)
 
     runBatch(players, food)
@@ -37,6 +40,7 @@ function runBatch(players, food) {
         player.inputs = inputs
 
         const outputs = [
+            { name: 'Move forward' },
             { name: 'Rotate clockwise' },
             { name: 'Rotate counter-clockwise' },
         ]
@@ -56,6 +60,13 @@ function runBatch(players, food) {
 
             const key = e.key
 
+            if (key == 'w') {
+
+                let left = player.left - player.speed * Math.cos(player.angle)
+                let top = player.top - player.speed * Math.sin(player.angle)
+                
+                player.move(left, top)
+            }
             if (key == 'a') {
 
                 player.rotateClockwise()
@@ -68,14 +79,9 @@ function runBatch(players, food) {
             }
         }
 
-        if (tick % 10 == 0) console.log(player.angle)
-
         //
-        
-        let left = player.left - 10 * Math.cos(player.angle)
-        let top = player.top - 10 * Math.sin(player.angle)
-        
-        player.move(left, top)
+
+
     }
 }
 
@@ -96,6 +102,7 @@ function display() {
 
     const displayValues = {
         tick: tick,
+        playerCount, playerCount,
     }
 
     // Loop through displayValues

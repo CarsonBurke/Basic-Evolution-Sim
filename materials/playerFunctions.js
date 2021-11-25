@@ -2,14 +2,14 @@ Player.prototype.rotateClockwise = function() {
 
     const player = this
 
-    player.angle += 0.5
+    player.angle += player.rotateSpeed
 }
 
 Player.prototype.rotateCounterClockwise = function() {
 
     const player = this
 
-    player.angle -= 0.5
+    player.angle -= player.rotateSpeed
 }
 
 Player.prototype.kill = function() {

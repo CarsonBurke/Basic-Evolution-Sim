@@ -28,6 +28,8 @@ Game.prototype.createPlayer = function(x, y, angle, network) {
         imageID: 'player',
         score: 0,
         angle: angle,
+        rotateSpeed: 0.2,
+        speed: 1,
         network: network || undefined,
         gameID: game.id,
     })
