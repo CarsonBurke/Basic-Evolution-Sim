@@ -36,7 +36,7 @@ Player.prototype.findClosestFood = function(food) {
     // Sort food by distance from player
 
     const foodByDistance = food.sort((a, b) => findDistance(a, player) - findDistance(b, player))
-    
+
     // Set closestFood as first in foodByDistance and inform it
 
     const closestFood = foodByDistance[0]
@@ -99,8 +99,32 @@ Player.prototype.createNetwork = function(inputs, outputs) {
 Player.prototype.rotate = function() {
 
     const player = this
-    const game = player.findGame()
 
-    ctx.translate(player.left + player.width / 2, player.top + player.height / 2)
-    ctx.rotate(player.angle)
+    // Store the current context state (i.e. rotation, translation etc..)
+
+    map.cr.save()
+
+    // Set the origin to the center of the image
+
+    map.cr.translate(player.left + player.width / 2, player.top + player.height / 2)
+
+    // Convert degrees to radian 
+
+    let radian = player.angle * Math.PI / 180
+
+    // Rotate the canvas around the origin
+
+    map.cr.rotate(radian)
+
+    // Find imageEl based on gameObject's imageID
+
+    const imageEl = document.getElementById(player.imageID)
+
+    // Draw image using gameObject's properties
+
+    map.cr.drawImage(imageEl, player.width / 2 * -1, player.height / 2 * -1, player.width, player.height)
+
+    // Restore canvas state as saved from above
+
+    map.cr.restore()
 }

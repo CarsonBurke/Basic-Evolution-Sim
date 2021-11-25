@@ -4,6 +4,6 @@ let i = 0
 
 while (i < gameSpeed) {
 
-    setInterval(runTick, 100)
+    setInterval(runTick, 1)
     i++
 }

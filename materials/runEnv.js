@@ -57,7 +57,7 @@ function runBatch(players, food) {
 
         // 
 
-        window.onkeydown = function(e) {
+        /* window.onkeydown = function(e) {
 
             const key = e.key
 
@@ -78,9 +78,52 @@ function runBatch(players, food) {
                 player.rotateCounterClockwise()
                 return
             }
-        }
+        } */
 
         //
+
+        // Find last layer
+
+        const lastLayer = player.network.layers[Object.keys(player.network.layers).length - 1]
+
+        // Track iterations and loop through output perceptrons
+
+        let i = -1
+
+        for (const perceptronName in lastLayer.perceptrons) {
+
+            const perceptron = lastLayer.perceptrons[perceptronName]
+
+            // Record iteration
+
+            i++
+
+            // Iterate if output is 0
+
+            if (perceptron.activateValue > 0) {
+
+                // Take action connected to output
+
+                if (i == 0) {
+
+                    let left = player.left - player.speed * Math.cos(player.angle)
+                    let top = player.top - player.speed * Math.sin(player.angle)
+                    
+                    player.move(left, top)
+                    continue
+                }
+                if (i == 1) {
+
+                    player.rotateClockwise()
+                    break
+                }
+                if (i == 2) {
+
+                    player.rotateCounterClockwise()
+                    break
+                }
+            }
+        }
 
         // If player is inside closestFood
         
@@ -155,6 +198,12 @@ function animate() {
         for (const id in objects[type]) {
 
             const object = objects[type][id]
+
+            if (type == 'player') {
+
+                object.rotate()
+                continue
+            }
 
             object.draw()
         }

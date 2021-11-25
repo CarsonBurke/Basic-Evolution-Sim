@@ -6,7 +6,7 @@ let properties = {
     startingPlayers: 100,
     minFood: 100,
     nextId: 0,
-    gameSpeed: 1,
+    gameSpeed: 100000,
     animateTickSkip: 1,
     games: {},
     map: {
