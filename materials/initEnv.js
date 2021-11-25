@@ -4,6 +4,8 @@ function init() {
 
     // Style map width and height
 
+    map.el.classList.add('map')
+
     map.el.width = mapWidth
     map.el.height = mapHeight
 
@@ -11,15 +13,12 @@ function init() {
 
     map.cr.imageSmoothingEnabled = false
 
-    // Generate sprites
+    // Generate initlal world
 
-    for (let i = 0; i < gamesAmount; i++) {
+    const game = new Game()
 
-        const game = new Game()
+    for (let i = 0; i < startingPlayers; i++) {
 
-        for (let i = 0; i < requiredPlayers; i++) {
-
-            game.createPlayer({})
-        }
+        game.createPlayer(100, 100)
     }
 }

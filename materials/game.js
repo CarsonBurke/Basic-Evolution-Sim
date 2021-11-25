@@ -1,22 +1,21 @@
 class Game {
     constructor() {
 
-        //
-
-        this.id = newID()
+        const game = this
 
         //
 
-        this.active = true
-        this.spawnedEnemies = 0
-        this.spawning = true
-        this.objects = {
+        game.id = newID()
+
+        //
+
+        game.objects = {
             player: {},
             food: {},
         }
 
         //
 
-        games[this.id] = this
+        games[game.id] = game
     }
 }

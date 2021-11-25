@@ -6,10 +6,10 @@ body {
     overflow-x: hidden;
     overflow-y: hidden;
     --primary: rgb(5, 228, 5);
-    --primaryShade: rgb(66, 66, 66);
-    --secondaryShade: rgb(38, 40, 43);
+    --primaryShade: rgb(255, 255, 255);
+    --secondaryShade: rgb(236, 236, 236);
     --tertiaryShade: white;
-    color: white;
+    color: rgb(0, 0, 0);
     scroll-behavior: smooth;
     background: var(--secondaryShade);
     display: flex;
@@ -216,9 +216,9 @@ body {
 /* Game */
 
 .map {
+    background: var(--primaryShade);
     position: absolute;
-    background: linear-gradient(180deg, black 0%, rgb(22, 22, 22) 100%);
-    box-shadow: rgba(0, 0, 0, 0.2) 0 0 90px 0;
+    box-shadow: rgba(0, 0, 0, 0.05) 0 0 120px 0;
     transition: all 0.2s;
     display: flex;
     flex-wrap: wrap;

@@ -14,8 +14,8 @@ Game.prototype.createPlayer = function(x, y, network) {
 
     // opts for player
 
-    const width = 45
-    const height = 50
+    const width = 38
+    const height = 58
 
     // Create player
 
@@ -44,7 +44,7 @@ Game.prototype.createFood = function(x, y) {
 
     // opts for food
 
-    const width = 45
+    const width = 50
     const height = 50
 
     // Create food

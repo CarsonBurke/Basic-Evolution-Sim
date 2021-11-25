@@ -1,20 +1,16 @@
-// Assign variables
+// Construct vars
 
 let properties = {
-    mapWidth: 1000,
+    mapWidth: 900,
     mapHeight: 700,
-    gridPartSize: 25,
-    gamesAmount: 1,
-    requiredPlayers: 100,
-    maxEnemies: Infinity,
-    increasedSpawning: false,
+    startingPlayers: 100,
     nextId: 0,
-    speedMultiplier: 100000,
-    animateSpritesSkip: 10,
+    gameSpeed: 100000,
+    animateTickSkip: 10,
+    games: {},
     map: {
         el: document.getElementById("map"),
     },
-    games: {},
     colors: {
         red: "#b51818",
         blue: "#3718b5",
