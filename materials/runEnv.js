@@ -81,11 +81,11 @@ function runBatch(players, food) {
 
                 if (i == 0) {
 
-                    let left = player.left - player.speed * Math.cos(player.angle)
-                    let top = player.top - player.speed * Math.sin(player.angle)
+                    let left = player.left + player.speed * Math.cos(player.angle)
+                    let top = player.top + player.speed * Math.sin(player.angle)
                     
                     player.move(left, top)
-                    break
+                    continue
                 }
                 if (i == 1) {
 

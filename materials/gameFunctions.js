@@ -1,4 +1,4 @@
-Game.prototype.createPlayer = function(left, top, angle, network) {
+Game.prototype.createPlayer = function(left, top, degree, network) {
 
     const game = this
 
@@ -27,9 +27,13 @@ Game.prototype.createPlayer = function(left, top, angle, network) {
         height: height,
         imageID: 'player',
         score: 0,
-        angle: angle,
-        rotateSpeed: 0.2,
-        speed: 1,
+        health: 10,
+        food: 3,
+        birthDelay: Math.random() * 500,
+        lastBirth: 100,
+        angle: degree * Math.PI / 180,
+        rotateSpeed: 0.04,
+        speed: 1.2,
         network: network || undefined,
         gameID: game.id,
     })

@@ -4,7 +4,7 @@ Player.prototype.rotateClockwise = function() {
 
     player.angle += player.rotateSpeed
 
-    if (player.angle < 0) player.angle = 360
+    if (player.angle < 0) player.angle = Math.PI * 2
 }
 
 Player.prototype.rotateCounterClockwise = function() {
@@ -13,7 +13,7 @@ Player.prototype.rotateCounterClockwise = function() {
 
     player.angle -= player.rotateSpeed
 
-    if (player.angle > 360) player.angle = 0
+    if (player.angle > Math.PI * 2) player.angle = 0
 }
 
 Player.prototype.kill = function() {
@@ -108,13 +108,9 @@ Player.prototype.rotate = function() {
 
     map.cr.translate(player.left + player.width / 2, player.top + player.height / 2)
 
-    // Convert degrees to radian 
-
-    let radian = player.angle * Math.PI / 180
-
     // Rotate the canvas around the origin
 
-    map.cr.rotate(radian)
+    map.cr.rotate(player.angle + Math.PI / 2)
 
     // Find imageEl based on gameObject's imageID
 
