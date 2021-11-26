@@ -100,15 +100,9 @@ function runBatch(players, food) {
             }
         }
 
-        // If player is inside closestFood
-        
-        if (closestFood && findDistance(player, closestFood) - closestFood.width * 2 <= 0) {
-            
-            // Delete food and add score the player
+        player.eatAttempt(closestFood)
 
-            player.score += 1
-            closestFood.delete()
-        }
+        player.reproduceAttempt(tick, players.length)
     }
 }
 
@@ -123,6 +117,16 @@ function foodManager(food) {
         game.createFood()
         i++
     }
+}
+
+function findBestPlayer() {
+
+
+}
+
+function bestPlayerManager(players) {
+
+
 }
 
 function display() {

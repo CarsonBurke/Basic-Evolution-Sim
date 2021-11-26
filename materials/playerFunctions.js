@@ -124,3 +124,53 @@ Player.prototype.rotate = function() {
 
     map.cr.restore()
 }
+
+Player.prototype.reproduceAttempt = function(tick, playersCount) {
+
+    const player = this
+
+    // Stop if there aren't enough players
+
+    if (playersCount >= maxPlayers) return
+
+    // Stop if player doesn't have enough food
+
+    if (player.food == 0) return
+
+    // If birthing is on delay, stop
+
+    if (tick - player.lastBirth < player.birthDelay) return
+
+    const game = player.findGame()
+
+    // Clone and learn network
+
+    const duplicateNetwork = player.network.clone(player.inputs, player.outputs)
+    duplicateNetwork.learn()
+
+    // Create player with network
+
+    game.createPlayer(player.left, player.top, player.angle, duplicateNetwork)
+
+    // Take food
+
+    player.food -= 1
+
+    player.lastBirth = tick
+}
+
+Player.prototype.eatAttempt = function(closestFood) {
+
+    const player = this
+
+    // If player is inside closestFood
+
+    if (closestFood && findDistance(player, closestFood) - closestFood.width * 2 <= 0) {
+    
+        // Delete food and add score the player
+
+        player.score += 1
+        player.food += 1
+        closestFood.delete()
+    }
+}
