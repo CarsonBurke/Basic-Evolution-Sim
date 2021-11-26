@@ -100,6 +100,8 @@ function runBatch(players, food) {
             }
         }
 
+        player.age()
+
         player.eatAttempt(closestFood)
 
         player.reproduceAttempt(tick, players.length)

@@ -131,7 +131,11 @@ Player.prototype.reproduceAttempt = function(tick, playersCount) {
 
     // Stop if there aren't enough players
 
-    if (playersCount >= maxPlayers) return
+    if (playersCount >= maxPlayers) {
+
+        player.lastBirth = tick
+        return
+    }
 
     // Stop if player doesn't have enough food
 
@@ -173,4 +177,14 @@ Player.prototype.eatAttempt = function(closestFood) {
         player.food += 1
         closestFood.delete()
     }
+}
+
+Player.prototype.age = function() {
+
+    const player = this
+    
+    // Remove health as if to age player, kill if out of health
+
+    player.health -= player.ageAmount
+    if (player.health <= 0) player.kill()
 }
