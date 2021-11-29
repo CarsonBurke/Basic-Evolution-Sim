@@ -34,7 +34,6 @@ function runBatch(players, food) {
         const inputs = [
             { name: 'Player x', value: player.left + player.width / 2 },
             { name: 'Player y', value: player.left + player.width / 2 },
-            { name: 'Player angle', value: player.angle },
             { name: 'Closest food x', value: closestFood ? closestFood.left + closestFood.width / 2 : 0 },
             { name: 'Closest food y', value: closestFood ? closestFood.left + closestFood.width / 2 : 0 },
         ]

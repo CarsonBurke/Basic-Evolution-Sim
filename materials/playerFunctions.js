@@ -139,7 +139,11 @@ Player.prototype.reproduceAttempt = function(tick, playersCount) {
 
     // Stop if player doesn't have enough food
 
-    if (player.food == 0) return
+    if (player.food == 0) {
+
+        player.lastBirth = tick
+        return
+    }
 
     // If birthing is on delay, stop
 
@@ -154,7 +158,7 @@ Player.prototype.reproduceAttempt = function(tick, playersCount) {
 
     // Create player with network
 
-    game.createPlayer(player.left, player.top, player.angle, duplicateNetwork)
+    game.createPlayer(player.left + player.width / 2, player.top + player.height / 2, player.angle, duplicateNetwork, tick)
 
     // Take food
 
@@ -175,6 +179,7 @@ Player.prototype.eatAttempt = function(closestFood) {
 
         player.score += 1
         player.food += 1
+        player.health += player.ageAmount * 500
         closestFood.delete()
     }
 }
