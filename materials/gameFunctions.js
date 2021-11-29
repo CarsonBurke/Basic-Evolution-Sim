@@ -29,7 +29,7 @@ Game.prototype.createPlayer = function(left, top, degree, network, tick) {
         score: 0,
         health: Math.random() * 30,
         ageAmount: 0.01,
-        food: 2,
+        food: 0,
         birthDelay: Math.max(100, Math.random() * 600),
         lastBirth: tick + Math.max(100, Math.random() * 750),
         angle: degree * Math.PI / 180,

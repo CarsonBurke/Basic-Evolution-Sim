@@ -178,7 +178,7 @@ Player.prototype.eatAttempt = function(closestFood) {
         // Delete food and add score the player
 
         player.score += 1
-        player.food += 1
+        player.food += 10
         player.health += player.ageAmount * 500
         closestFood.delete()
     }

@@ -34,6 +34,11 @@ function runBatch(players, food) {
 
         // Define inputs and outputs
 
+        let angleToFood = closestFood ? Math.atan2(player.top - closestFood.top, player.left - closestFood.left) : 0
+
+        if (angleToFood < 0) angleToFood = Math.PI * 2
+        if (angleToFood > Math.PI * 2) angleToFood = 0
+        
         const inputs = [
             {
                 name: 'Player x', 
@@ -53,7 +58,7 @@ function runBatch(players, food) {
             },
             {
                 name: 'Angle to closest food',
-                value: closestFood ? Math.atan2(player.top - closestFood.top, player.left - closestFood.left) : 0
+                value: angleToFood
             },
         ]
         player.inputs = inputs
@@ -125,8 +130,6 @@ function runBatch(players, food) {
         player.eatAttempt(closestFood)
 
         player.reproduceAttempt(tick, players.length)
-
-        //
     }
 }
 
@@ -153,7 +156,19 @@ function findBestPlayer(players) {
 
 function bestPlayerManager(players) {
 
+    const game = games[Object.keys(games)[0]]
+
     const bestPlayer = findBestPlayer(players)
+
+    if (!bestPlayer) {
+
+        for (let i = 0; i < startingPlayers; i++) {
+
+            game.createPlayer(80 + 38 / 2, 80, 90, 0)
+        }
+
+        return
+    }
 
     //
 
