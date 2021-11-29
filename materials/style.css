@@ -144,7 +144,7 @@ body {
 
 .visualsParent {
     position: fixed;
-    right: 100px;
+    right: 130px;
     top: 10px;
     display: flex;
     pointer-events: none;
@@ -188,7 +188,7 @@ body {
 
 .textVisual {
     font-size: 14px;
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     position: absolute;
     width: fit-content;
 }

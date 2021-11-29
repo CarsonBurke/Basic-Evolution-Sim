@@ -1,5 +1,6 @@
 let tick = 0
 let playerCount = 0
+let bestScore = 0
 
 function runTick() {
 
@@ -14,6 +15,8 @@ function runTick() {
 
     runBatch(players, food)
     foodManager(food)
+
+    bestPlayerManager(players)
 
     display()
     animate()
@@ -51,7 +54,7 @@ function runBatch(players, food) {
             {
                 name: 'Angle to closest food',
                 value: closestFood ? Math.atan2(player.top - closestFood.top, player.left - closestFood.left) : 0
-            }
+            },
         ]
         player.inputs = inputs
 
@@ -71,6 +74,8 @@ function runBatch(players, food) {
         player.network.forwardPropagate(inputs)
 
         //
+
+        player.network.visualsParent.classList.remove('visualsParentShow')
 
         // Find last layer
 
@@ -138,14 +143,27 @@ function foodManager(food) {
     }
 }
 
-function findBestPlayer() {
+function findBestPlayer(players) {
 
+    // Sort players by score and inform player with most score
 
+    const playersByScore = players.sort((a, b) => a.score - b.score)
+    return playersByScore[playersByScore.length - 1]
 }
 
 function bestPlayerManager(players) {
 
+    const bestPlayer = findBestPlayer(players)
 
+    //
+
+    bestPlayer.network.updateVisuals(bestPlayer.inputs, bestPlayer.outputs)
+
+    bestPlayer.network.visualsParent.classList.add('visualsParentShow')
+
+    // If bestPlayer's score is is more than bestScore set bestScore to bestPlayer's score
+
+    if (bestPlayer.score > bestScore) bestScore = bestPlayer.score
 }
 
 function display() {
@@ -153,6 +171,7 @@ function display() {
     const displayValues = {
         tick: tick,
         playerCount, playerCount,
+        bestScore: bestScore,
     }
 
     // Loop through displayValues
