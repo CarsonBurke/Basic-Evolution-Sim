@@ -32,10 +32,26 @@ function runBatch(players, food) {
         // Define inputs and outputs
 
         const inputs = [
-            { name: 'Player x', value: player.left + player.width / 2 },
-            { name: 'Player y', value: player.left + player.width / 2 },
-            { name: 'Closest food x', value: closestFood ? closestFood.left + closestFood.width / 2 : 0 },
-            { name: 'Closest food y', value: closestFood ? closestFood.left + closestFood.width / 2 : 0 },
+            {
+                name: 'Player x', 
+                value: player.left + player.width / 2 
+            },
+            {
+                name: 'Player y', 
+                value: player.left + player.width / 2 
+            },
+            {
+                name: 'Closest food x', 
+                value: closestFood ? closestFood.left + closestFood.width / 2 : 0 
+            },
+            {
+                name: 'Closest food y', 
+                value: closestFood ? closestFood.left + closestFood.width / 2 : 0 
+            },
+            {
+                name: 'Angle to closest food',
+                value: closestFood ? Math.atan2(player.top - closestFood.top, player.left - closestFood.left) : 0
+            }
         ]
         player.inputs = inputs
 
@@ -104,6 +120,8 @@ function runBatch(players, food) {
         player.eatAttempt(closestFood)
 
         player.reproduceAttempt(tick, players.length)
+
+        //
     }
 }
 

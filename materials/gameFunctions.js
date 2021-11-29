@@ -33,7 +33,7 @@ Game.prototype.createPlayer = function(left, top, degree, network, tick) {
         birthDelay: Math.max(100, Math.random() * 600),
         lastBirth: tick + Math.max(100, Math.random() * 750),
         angle: degree * Math.PI / 180,
-        rotateSpeed: 0.05,
+        rotateSpeed: 0.075,
         speed: 3,
         network: network || undefined,
         gameID: game.id,
