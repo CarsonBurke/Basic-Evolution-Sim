@@ -38,6 +38,8 @@ function runBatch(players, food) {
 
         if (angleToFood < 0) angleToFood = Math.PI * 2
         if (angleToFood > Math.PI * 2) angleToFood = 0
+
+        /* const distanceFromClosestFood = closestFood ? findDistance(player, closestFood) : 0 */
         
         const inputs = [
             {
@@ -56,6 +58,10 @@ function runBatch(players, food) {
                 name: 'Closest food y', 
                 value: closestFood ? closestFood.left + closestFood.width / 2 : 0 
             },
+            /* {
+                name: 'Distance from closest food',
+                value: distanceFromClosestFood
+            }, */
             {
                 name: 'Angle to closest food',
                 value: angleToFood
@@ -125,6 +131,8 @@ function runBatch(players, food) {
             }
         }
 
+        if (Object.keys(game.objects.player).length == 1) return
+
         player.age()
 
         player.eatAttempt(closestFood)
@@ -151,7 +159,8 @@ function findBestPlayer(players) {
     // Sort players by score and inform player with most score
 
     const playersByScore = players.sort((a, b) => a.score - b.score)
-    return playersByScore[playersByScore.length - 1]
+    playersByScore.reverse()
+    return playersByScore[0]
 }
 
 function bestPlayerManager(players) {
@@ -159,12 +168,14 @@ function bestPlayerManager(players) {
     const game = games[Object.keys(games)[0]]
 
     const bestPlayer = findBestPlayer(players)
+    if (!bestPlayer) return
 
-    if (!bestPlayer) {
-
+    if (players.length == 1) {
         for (let i = 0; i < startingPlayers; i++) {
 
-            game.createPlayer(80 + 38 / 2, 80, 90, 0)
+            const duplicateNetwork = bestPlayer.network.clone(bestPlayer.inputs, bestPlayer.outputs)
+
+            game.createPlayer(80 + 38 / 2, 80, 90, duplicateNetwork.learn(), 0)
         }
 
         return

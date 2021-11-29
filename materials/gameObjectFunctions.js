@@ -40,7 +40,7 @@ GameObject.prototype.exists = function() {
 
     const gameObject = this
 
-
+    
 }
 
 GameObject.prototype.findGame = function() {

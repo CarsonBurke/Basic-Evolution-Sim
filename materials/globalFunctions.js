@@ -6,7 +6,14 @@ function findDistance(obj1, obj2) {
     return distance
 }
 
-function randomValueBetweenThresholds(threshold1, threshold2) {
+function randomValue(threshold1, threshold2) {
 
-    
+    let value = 0
+
+    while (value < threshold1 || value > threshold2) {
+
+        value = Math.random() * threshold2
+    }
+
+    return value
 }

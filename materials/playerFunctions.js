@@ -53,7 +53,7 @@ Player.prototype.createNetwork = function(inputs, outputs) {
 
     // Create layers
 
-    const layerCount = 2
+    const layerCount = 3
 
     for (let i = 0; i < layerCount; i++) network.addLayer({})
 
@@ -65,7 +65,7 @@ Player.prototype.createNetwork = function(inputs, outputs) {
 
     // Create hidden perceptrons
 
-    const hiddenPerceptronsNeed = 6
+    const hiddenPerceptronsNeed = 4
 
     // Loop through layers
 
@@ -192,4 +192,25 @@ Player.prototype.age = function() {
 
     player.health -= player.ageAmount
     if (player.health <= 0) player.kill()
+}
+
+Player.prototype.findPlayersInRange = function(players) {
+
+    const player = this
+
+    let playersInRangeAmount = 0
+
+    for (const otherPlayer of players) {
+
+        // Find distance between players, iterate if over 200
+
+        const distance = findDistance(player, otherPlayer)
+        if (distance > 200) continue
+
+        // Add 1 to playersInRangeAmount
+
+        playersInRangeAmount++
+    }
+
+    return playersInRangeAmount
 }
