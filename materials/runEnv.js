@@ -34,15 +34,34 @@ function runBatch(players, food) {
 
         // Define inputs and outputs
 
-        let angleToFood = closestFood ? Math.atan2(player.top - closestFood.top, player.left - closestFood.left) : 0
+        const closestFoodAngle = closestFood ? Math.atan((closestFood.top - player.top) / (closestFood.left - player.left)) : 0
+        
+        /* if (angleToFood < 0) angleToFood = Math.PI * 2
+        if (angleToFood > Math.PI * 2) angleToFood = 0 */
 
-        if (angleToFood < 0) angleToFood = Math.PI * 2
-        if (angleToFood > Math.PI * 2) angleToFood = 0
+        const angleToFood = ((closestFoodAngle / Math.PI * 180) + (player.angle / Math.PI * 180)) * -1
+        console.log(closestFoodAngle / Math.PI * 180)
 
-        /* const distanceFromClosestFood = closestFood ? findDistance(player, closestFood) : 0 */
+        /* 
+        input player's angle
+
+        example:
+
+        x = player.angle
+
+        x + theta = angle to closestFood
+
+        player.angle = 45*
+
+        food.angle = theta
+
+        angle to food = (player.angle + food.angle) * -1
+        */
+
+        const distanceFromClosestFood = closestFood ? findDistance(player, closestFood) : 0
         
         const inputs = [
-            {
+            /* {
                 name: 'Player x', 
                 value: player.left + player.width / 2 
             },
@@ -57,7 +76,7 @@ function runBatch(players, food) {
             {
                 name: 'Closest food y', 
                 value: closestFood ? closestFood.left + closestFood.width / 2 : 0 
-            },
+            }, */
             /* {
                 name: 'Distance from closest food',
                 value: distanceFromClosestFood
@@ -110,7 +129,7 @@ function runBatch(players, food) {
 
                 // Take action connected to output
 
-                if (i == 0) {
+                /* if (i == 0) {
 
                     let left = player.left + player.speed * Math.cos(player.angle)
                     let top = player.top + player.speed * Math.sin(player.angle)
@@ -127,9 +146,16 @@ function runBatch(players, food) {
 
                     player.rotateCounterClockwise()
                     break
-                }
+                } */
             }
         }
+
+        let left = player.left + player.speed * Math.cos(player.angle)
+                    let top = player.top + player.speed * Math.sin(player.angle)
+                    
+                    player.move(left, top)
+
+        player.rotateClockwise()
 
         if (Object.keys(game.objects.player).length == 1) return
 
@@ -175,7 +201,7 @@ function bestPlayerManager(players) {
 
             const duplicateNetwork = bestPlayer.network.clone(bestPlayer.inputs, bestPlayer.outputs)
 
-            game.createPlayer(80 + 38 / 2, 80, 90, duplicateNetwork.learn(), 0)
+            // game.createPlayer(80 + 38 / 2, 80, 90, duplicateNetwork.learn(), 0)
         }
 
         return
