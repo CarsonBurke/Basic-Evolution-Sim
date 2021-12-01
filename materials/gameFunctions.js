@@ -27,7 +27,7 @@ Game.prototype.createPlayer = function(left, top, degree, network, tick) {
         height: height,
         imageID: 'player',
         score: 0,
-        health: randomValue(3, 9),
+        health: 8,
         ageAmount: 0.01,
         food: 0,
         birthDelay: randomValue(50, 200),

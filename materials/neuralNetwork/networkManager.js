@@ -4,8 +4,8 @@ const networks = {}
 
 const defaults = {
     learningRate: 0.2,
-    bias: 0,
-    lineMutation: false,
+    bias: 1,
+    lineMutation: true,
     layerVisualWidth: 70,
 }
 

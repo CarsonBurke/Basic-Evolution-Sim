@@ -34,51 +34,9 @@ function runBatch(players, food) {
 
         // Define inputs and outputs
 
-        /*         const closestFoodAngle = closestFood ? Math.atan((closestFood.top - player.top) / (closestFood.left - player.left)) : 0 */
         const closestFoodAngle = closestFood ? Math.atan2((closestFood.top - player.top), (closestFood.left - player.left)) : 0
-        /* console.log(Math.floor(closestFoodAngle / Math.PI * 180)) */
 
-        /* const angleToFood = ((closestFoodAngle / Math.PI * 180) + (player.angle / Math.PI * 180)) */
         const angleToFood = (2 * Math.PI - player.angle) + closestFoodAngle
-        
-        console.log(Math.floor(toDegrees(angleToFood)))
-
-        /* 
-        input player's angle
-
-        example:
-
-        x = player.angle
-
-        x + theta = angle to closestFood
-
-        player.angle = 45*
-
-        food.angle = theta
-
-        angle to food = (player.angle + food.angle) * -1
-        */
-
-        /**
-         * No negatives
-         * Radian required to move clockwise to reach food
-         * 
-         * Issues:
-         * 
-         * If object is inside it will go full circle
-         */
-
-        /* 
-        x = player.angle
-        theta = closestFoodAngle
-
-        subtract x from 2 PI
-        gives angle from x to angle 0 + theta
-
-        
-        */
-
-        const distanceFromClosestFood = closestFood ? findDistance(player, closestFood) : 0
         
         const inputs = [
             /* {
@@ -96,6 +54,10 @@ function runBatch(players, food) {
             {
                 name: 'Closest food y', 
                 value: closestFood ? closestFood.left + closestFood.width / 2 : 0 
+            }, */
+            /* {
+                name: 'Distance from closest food',
+                value: distanceFromClosestFood
             }, */
             /* {
                 name: 'Distance from closest food',
@@ -151,6 +113,16 @@ function runBatch(players, food) {
 
                 /* if (i == 0) {
 
+                    player.rotateClockwise()
+                    break
+                }
+                if (i == 1) {
+
+                    player.rotateCounterClockwise()
+                    break
+                } */
+                if (i == 0) {
+
                     let left = player.left + player.speed * Math.cos(player.angle)
                     let top = player.top + player.speed * Math.sin(player.angle)
                     
@@ -166,16 +138,9 @@ function runBatch(players, food) {
 
                     player.rotateCounterClockwise()
                     break
-                } */
+                }
             }
         }
-
-        let left = player.left + player.speed * Math.cos(player.angle)
-        let top = player.top + player.speed * Math.sin(player.angle)
-        
-        player.move(left, top)
-
-        player.rotateClockwise()
 
         if (Object.keys(game.objects.player).length == 1) return
 
@@ -221,7 +186,7 @@ function bestPlayerManager(players) {
 
             const duplicateNetwork = bestPlayer.network.clone(bestPlayer.inputs, bestPlayer.outputs)
 
-            // game.createPlayer(80 + 38 / 2, 80, 90, duplicateNetwork.learn(), 0)
+            game.createPlayer(80 + 38 / 2, 80, 90, duplicateNetwork.learn(), 0)
         }
 
         return

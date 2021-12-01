@@ -1,14 +1,14 @@
 // Construct vars
 
 let properties = {
-    mapWidth: 900,
-    mapHeight: 700,
-    startingPlayers: 1,
-    maxPlayers: 1,
+    mapWidth: 2000,
+    mapHeight: 1400,
+    startingPlayers: 100,
+    maxPlayers: 100,
     minFood: 10,
     nextId: 0,
-    gameSpeed: 1,
-    animateTickSkip: 1,
+    gameSpeed: 10000,
+    animateTickSkip: 10,
     games: {},
     map: {
         el: document.getElementById("map"),

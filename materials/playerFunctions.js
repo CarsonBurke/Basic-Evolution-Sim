@@ -210,3 +210,15 @@ Player.prototype.findPlayersInRange = function(players) {
 
     return playersInRangeAmount
 }
+
+Player.prototype.applyMapBorders = function() {
+
+    const player = this
+
+    // Apply map borders
+
+    if (player.left <= 0) return true
+    if (player.left + player.width >= map.el.width) return true
+    if (player.top <= 0) return true
+    if (player.top + player.height >= map.el.height) return true
+}
