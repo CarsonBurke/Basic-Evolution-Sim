@@ -19,6 +19,6 @@ function init() {
 
     for (let i = 0; i < startingPlayers; i++) {
 
-        game.createPlayer(80 + 38 / 2, 80, 90, undefined, 0)
+        game.createPlayer(700 + 38 / 2, 80, 90, undefined, 0)
     }
 }

@@ -3,8 +3,6 @@ Player.prototype.rotateClockwise = function() {
     const player = this
 
     player.angle += player.rotateSpeed
-
-    if (player.angle < 0) player.angle = Math.PI * 2
 }
 
 Player.prototype.rotateCounterClockwise = function() {
@@ -12,8 +10,6 @@ Player.prototype.rotateCounterClockwise = function() {
     const player = this
 
     player.angle -= player.rotateSpeed
-
-    if (player.angle > Math.PI * 2) player.angle = 0
 }
 
 Player.prototype.kill = function() {

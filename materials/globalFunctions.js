@@ -17,3 +17,9 @@ function randomValue(threshold1, threshold2) {
 
     return value
 }
+
+function toDegrees(radian) {
+
+    const degree = radian / Math.PI * 180
+    return degree
+}

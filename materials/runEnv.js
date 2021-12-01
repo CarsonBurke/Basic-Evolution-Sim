@@ -34,13 +34,14 @@ function runBatch(players, food) {
 
         // Define inputs and outputs
 
-        const closestFoodAngle = closestFood ? Math.atan((closestFood.top - player.top) / (closestFood.left - player.left)) : 0
-        
-        /* if (angleToFood < 0) angleToFood = Math.PI * 2
-        if (angleToFood > Math.PI * 2) angleToFood = 0 */
+        /*         const closestFoodAngle = closestFood ? Math.atan((closestFood.top - player.top) / (closestFood.left - player.left)) : 0 */
+        const closestFoodAngle = closestFood ? Math.atan2((closestFood.top - player.top), (closestFood.left - player.left)) : 0
+        /* console.log(Math.floor(closestFoodAngle / Math.PI * 180)) */
 
-        const angleToFood = ((closestFoodAngle / Math.PI * 180) + (player.angle / Math.PI * 180)) * -1
-        console.log(closestFoodAngle / Math.PI * 180)
+        /* const angleToFood = ((closestFoodAngle / Math.PI * 180) + (player.angle / Math.PI * 180)) */
+        const angleToFood = (2 * Math.PI - player.angle) + closestFoodAngle
+        
+        console.log(Math.floor(toDegrees(angleToFood)))
 
         /* 
         input player's angle
@@ -56,6 +57,25 @@ function runBatch(players, food) {
         food.angle = theta
 
         angle to food = (player.angle + food.angle) * -1
+        */
+
+        /**
+         * No negatives
+         * Radian required to move clockwise to reach food
+         * 
+         * Issues:
+         * 
+         * If object is inside it will go full circle
+         */
+
+        /* 
+        x = player.angle
+        theta = closestFoodAngle
+
+        subtract x from 2 PI
+        gives angle from x to angle 0 + theta
+
+        
         */
 
         const distanceFromClosestFood = closestFood ? findDistance(player, closestFood) : 0
@@ -151,9 +171,9 @@ function runBatch(players, food) {
         }
 
         let left = player.left + player.speed * Math.cos(player.angle)
-                    let top = player.top + player.speed * Math.sin(player.angle)
-                    
-                    player.move(left, top)
+        let top = player.top + player.speed * Math.sin(player.angle)
+        
+        player.move(left, top)
 
         player.rotateClockwise()
 
