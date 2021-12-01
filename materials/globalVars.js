@@ -7,8 +7,8 @@ let properties = {
     maxPlayers: 100,
     minFood: 10,
     nextId: 0,
-    gameSpeed: 10000,
-    animateTickSkip: 10,
+    gameSpeed: 1,
+    animateTickSkip: 1,
     games: {},
     map: {
         el: document.getElementById("map"),
