@@ -154,7 +154,7 @@ Player.prototype.reproduceAttempt = function(tick, playersCount) {
 
     // Create player with network
 
-    game.createPlayer(player.left + player.width / 2, player.top + player.height / 2, player.angle, duplicateNetwork, tick)
+    game.createPlayer(player.left + player.width / 2, player.top + player.height / 2, player.angle, duplicateNetwork, tick, player.imageID)
 
     // Take food
 
@@ -188,37 +188,4 @@ Player.prototype.age = function() {
 
     player.health -= player.ageAmount
     if (player.health <= 0) player.kill()
-}
-
-Player.prototype.findPlayersInRange = function(players) {
-
-    const player = this
-
-    let playersInRangeAmount = 0
-
-    for (const otherPlayer of players) {
-
-        // Find distance between players, iterate if over 200
-
-        const distance = findDistance(player, otherPlayer)
-        if (distance > 200) continue
-
-        // Add 1 to playersInRangeAmount
-
-        playersInRangeAmount++
-    }
-
-    return playersInRangeAmount
-}
-
-Player.prototype.applyMapBorders = function() {
-
-    const player = this
-
-    // Apply map borders
-
-    if (player.left <= 0) return true
-    if (player.left + player.width >= map.el.width) return true
-    if (player.top <= 0) return true
-    if (player.top + player.height >= map.el.height) return true
 }

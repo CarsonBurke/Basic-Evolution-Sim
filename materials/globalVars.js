@@ -10,6 +10,13 @@ let properties = {
     gameSpeed: 1,
     animateTickSkip: 1,
     games: {},
+    imageOptions: [
+        'playerGreen',
+        'playerBlue',
+        'playerRed',
+        'playerYellow',
+        'playerPurple',
+    ],
     map: {
         el: document.getElementById("map"),
     },

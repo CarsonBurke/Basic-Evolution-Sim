@@ -1,6 +1,15 @@
-Game.prototype.createPlayer = function(left, top, degree, network, tick) {
+Game.prototype.createPlayer = function(left, top, degree, network, tick, imageID) {
 
     const game = this
+
+    // If an image isn't provided
+
+    if (!imageID) {
+
+        // Set it to a random imageID
+
+        imageID = imageOptions[Math.floor(Math.random() * (imageOptions.length -1))]
+    }
 
     // If positions aren't provided
 
@@ -25,7 +34,7 @@ Game.prototype.createPlayer = function(left, top, degree, network, tick) {
         top: top - height * 0.5,
         width: width,
         height: height,
-        imageID: 'player',
+        imageID: imageID,
         score: 0,
         health: randomValue(6, 9),
         ageAmount: 0.01,
