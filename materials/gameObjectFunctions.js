@@ -36,13 +36,6 @@ GameObject.prototype.delete = function() {
     delete gameObject.findGame().objects[gameObject.type][gameObject.id]
 }
 
-GameObject.prototype.exists = function() {
-
-    const gameObject = this
-
-    
-}
-
 GameObject.prototype.findGame = function() {
 
     const gameObject = this

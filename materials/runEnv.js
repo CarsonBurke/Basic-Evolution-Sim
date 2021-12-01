@@ -39,30 +39,6 @@ function runBatch(players, food) {
         const angleToFood = (2 * Math.PI - player.angle) + closestFoodAngle
         
         const inputs = [
-            /* {
-                name: 'Player x', 
-                value: player.left + player.width / 2 
-            },
-            {
-                name: 'Player y', 
-                value: player.left + player.width / 2 
-            },
-            {
-                name: 'Closest food x', 
-                value: closestFood ? closestFood.left + closestFood.width / 2 : 0 
-            },
-            {
-                name: 'Closest food y', 
-                value: closestFood ? closestFood.left + closestFood.width / 2 : 0 
-            }, */
-            /* {
-                name: 'Distance from closest food',
-                value: distanceFromClosestFood
-            }, */
-            /* {
-                name: 'Distance from closest food',
-                value: distanceFromClosestFood
-            }, */
             {
                 name: 'Angle to closest food',
                 value: angleToFood
@@ -111,16 +87,6 @@ function runBatch(players, food) {
 
                 // Take action connected to output
 
-                /* if (i == 0) {
-
-                    player.rotateClockwise()
-                    break
-                }
-                if (i == 1) {
-
-                    player.rotateCounterClockwise()
-                    break
-                } */
                 if (i == 0) {
 
                     let left = player.left + player.speed * Math.cos(player.angle)
@@ -141,6 +107,8 @@ function runBatch(players, food) {
                 }
             }
         }
+
+        // Stop if there is only one player left
 
         if (Object.keys(game.objects.player).length == 1) return
 
